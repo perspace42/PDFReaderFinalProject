@@ -1,0 +1,16 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "c:\\Users\\field\\Documents\\JavaFX\\openjfx-17.0.8_windows-x64_bin-sdk\\javafx-sdk-17.0.8\\lib\\javafx.base.jar",
+        "c:\\Users\\field\\Documents\\JavaFX\\openjfx-17.0.8_windows-x64_bin-sdk\\javafx-sdk-17.0.8\\lib\\javafx.controls.jar",
+        "c:\\Users\\field\\Documents\\JavaFX\\openjfx-17.0.8_windows-x64_bin-sdk\\javafx-sdk-17.0.8\\lib\\javafx.fxml.jar",
+        "c:\\Users\\field\\Documents\\JavaFX\\openjfx-17.0.8_windows-x64_bin-sdk\\javafx-sdk-17.0.8\\lib\\javafx.graphics.jar",
+        "c:\\Users\\field\\Documents\\JavaFX\\openjfx-17.0.8_windows-x64_bin-sdk\\javafx-sdk-17.0.8\\lib\\javafx.media.jar",
+        "c:\\Users\\field\\Documents\\JavaFX\\openjfx-17.0.8_windows-x64_bin-sdk\\javafx-sdk-17.0.8\\lib\\javafx.swing.jar",
+        "c:\\Users\\field\\Documents\\JavaFX\\openjfx-17.0.8_windows-x64_bin-sdk\\javafx-sdk-17.0.8\\lib\\javafx.web.jar",
+        "c:\\Users\\field\\Documents\\JavaFX\\openjfx-17.0.8_windows-x64_bin-sdk\\javafx-sdk-17.0.8\\lib\\javafx-swt.jar",
+        "c:\\Users\\field\\Documents\\JavaFX\\openjfx-17.0.8_windows-x64_bin-sdk\\javafx-sdk-17.0.8\\lib\\pdfbox-app-3.0.0.jar"
+    ]
+
+}
+
