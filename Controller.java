@@ -18,9 +18,11 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.scene.control.Alert;
 
 public class Controller{
     //Controller shouldn't need any member variables because it is just storing functions for the various buttons that the UI will contain later
@@ -47,13 +49,18 @@ public class Controller{
         fileViewer.incrementPage();
     }
 
-    //Function to load the next page
+    //Function to load the previous page
     public void onPreviousPageButtonPressed(PDFViewer fileViewer){
         fileViewer.decrementPage();
     }
 
+    //Function to jump to a specific page
+    public void onJumpToPage(PDFViewer fileViewer, int pageNumber){
+        fileViewer.jumpToPage(pageNumber);
+    }
+
     //Function to open a new pdf file from local directory
-    public PDFViewer onOpenButtonPressed(Stage primaryStage, PDFReader myPdfReader, PDFViewer myPdfViewer){
+    public PDFReader onOpenButtonPressed(Stage primaryStage){
         //open the file
         FileChooser fileDialog = new FileChooser();
         // Set the title of the file dialog
@@ -64,21 +71,26 @@ public class Controller{
         File selectedFile = fileDialog.showOpenDialog(primaryStage);
         //Add the file to the PDF Viewer if it is not null
         if (selectedFile != null){
-            myPdfReader = new PDFReader(selectedFile);
+            PDFReader myPdfReader = new PDFReader(selectedFile);
             //If the file the user selected is a valid pdf
             if (myPdfReader.isValid){
-                //Add the pdf reader to the PDF Viewer
-                myPdfViewer = new PDFViewer(myPdfReader);
-                //return the updated pdf viewer
-                return myPdfViewer;
+                return myPdfReader;
+            
+            //Otherwise display an alert to the user and wait for them to close it
+            }else{
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.setHeaderText("Invalid FileType");
+                alert.setContentText("The File You Selected Was Not A Valid PDF");
+                alert.showAndWait();
             }
         }
+
         //otherwise return null
         return null;
     }
 
     //Function to open a new pdf file from a web url
-    public PDFViewer onOpenFromURLButtonPressed(PDFReader myPdfReader, PDFViewer myPdfViewer){
+    public PDFReader onOpenFromURLButtonPressed(PDFReader myPdfReader){
         //Define The Custom Dialog Box
         Dialog<String> dialog = new Dialog<>();
         dialog.setTitle("Open PDF from URL");
@@ -117,12 +129,16 @@ public class Controller{
             try{
                 url = new URL(urlString);
             }catch(Exception e){
+                //Display An Error Message That The URL Was Not Valid
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.setHeaderText("PDF Not Found");
+                alert.setContentText("The URL You Supplied Did Not Lead To A Valid PDF");
+                alert.showAndWait();
                 //if the url is invalid return null
                 return null;
             }
             myPdfReader = new PDFReader(url);
-            myPdfViewer = new PDFViewer(myPdfReader);
-            return myPdfViewer;
+            return myPdfReader;
         }
 
         //return null if the result is not present
@@ -135,13 +151,13 @@ public class Controller{
     }
 
     //Function to close the currently opened pdf file
-    public void onCloseButtonPressed(){
-        //close currently opened pdf file is not yet implemented
+    public void onCloseButtonPressed(PDFViewer fileViewer,Label rightPageLabel, TextField jumpToPageEntry){
+       //clear the file reader
+       fileViewer.fileReader.clear();
+       //adjust the page labels
+       rightPageLabel.setText("/" + fileViewer.fileReader.getPageCount());
+       jumpToPageEntry.setText("0");
+       //clear the currently open image
+       fileViewer.setImage(null);
     }
-
-    //Function to close the program
-    public void onExitButtonPressed(){
-        //close program is not yet implemented
-    }
-
 }

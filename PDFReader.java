@@ -160,6 +160,14 @@ public class PDFReader extends PDFDocument {
         return currentPageWidth;
     }
 
+    //Clear the currently opened PDF by clearing all of its images
+    public void clear(){
+        //clear the page images
+        Image[] pageImageList = new Image[1];
+        currentPageNumber = -1;
+        pageCount = 0;
+    }
+
     
 
 }

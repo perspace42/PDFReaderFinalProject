@@ -1,7 +1,7 @@
 /*
 Author: Scott Field
 Name: Main
-Date: 09/30/2023
+Date: 10/10/2023
 Version: 1.0
 Purpose:
 A class for setting up the UI and the program
@@ -9,6 +9,7 @@ main loop using JavaFX
 */
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.geometry.Pos;
 import javafx.scene.layout.VBox;
@@ -23,6 +24,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
+import javafx.scene.input.KeyCode;
 
 import java.io.File;
 
@@ -39,8 +41,8 @@ public class Main extends Application {
         Controller binding = new Controller();
 
         //Load The Image using the PDFReader 
-        //remove the arguments in this PDFReader to not see the starting pdf
-        PDFReader fileReader = new PDFReader(new File("temp/test.pdf"));
+        //remove the /**/ in this PDFReader to see the starting pdf
+        PDFReader fileReader = new PDFReader(/*new File("temp/test.pdf")*/);
 
         //Set The Image to be displayed using the PDFViewer
         PDFViewer fileViewer = new PDFViewer(fileReader);
@@ -51,9 +53,11 @@ public class Main extends Application {
 
         //set the labels and text entry to jump to a page
         Label leftPageLabel = new Label("Page");
-        Label rightPageLabel = new Label(" / ");
-        //comment out this line to not see the starting pdf pages
-        rightPageLabel.setText("/" + fileReader.getPageCount());
+        Label rightPageLabel = new Label(" /0 ");
+
+        //uncomment this line to not see the starting pdf pages
+        //rightPageLabel.setText("/" + fileReader.getPageCount());
+
         TextField jumpToPageEntry = new TextField();
 
         //Create The Formatter To Ensure That Only Numbers Can Be Entered Into The JumpToPage Field
@@ -67,6 +71,8 @@ public class Main extends Application {
 
         //Add The Formatter To The Text Field
         jumpToPageEntry.setTextFormatter(formatter);
+        //Set The Intial Value To 0
+        jumpToPageEntry.setText("0");
 
         // Create the VBox to store the PDFViewer and the buttons for the test
         VBox pdfBox = new VBox();
@@ -96,10 +102,10 @@ public class Main extends Application {
         MenuItem openFileItem = new MenuItem("Open");
         MenuItem openFileUrlItem = new MenuItem("Open From URL");
         MenuItem saveAsFileItem = new MenuItem("Save As");
-        MenuItem closeMenuItem = new MenuItem("Close");
+        MenuItem closeFileItem = new MenuItem("Close");
         MenuItem exitItem = new MenuItem("Exit");
         // Add the items to the file menu
-        fileMenu.getItems().addAll(openFileItem, openFileUrlItem, saveAsFileItem, closeMenuItem, exitItem);
+        fileMenu.getItems().addAll(openFileItem, openFileUrlItem, saveAsFileItem, closeFileItem, exitItem);
 
         // Add the file menu to the menu bar
         MenuBar fileMenuBar = new MenuBar();
@@ -131,47 +137,78 @@ public class Main extends Application {
         primaryStage.show();
 
         //Event Listeners
-        //set the methods for previous and next page
-        previousPageButton.setOnAction(e ->
-            binding.onPreviousPageButtonPressed(fileViewer)
-        );
-
-        nextPageButton.setOnAction(e ->
-            binding.onNextPageButtonPressed(fileViewer)
-        );
+        //set the methods for previous page
+        previousPageButton.setOnAction(e ->{
+            //go to the previous page
+            binding.onPreviousPageButtonPressed(fileViewer);
+            //set the page tracker entry to match
+            jumpToPageEntry.setText(Integer.toString(fileViewer.fileReader.getCurrentPageNumber() + 1));
+        });
+        //set the methods for next page
+        nextPageButton.setOnAction(e ->{
+            //go to the next page
+            binding.onNextPageButtonPressed(fileViewer);
+            //set the page tracker entry to match
+            jumpToPageEntry.setText(Integer.toString(fileViewer.fileReader.getCurrentPageNumber() + 1));
+        });
+        //set the method for jump to page when the enter key is clicked and the jumpToPageEntry is in scope
+        jumpToPageEntry.setOnKeyPressed(e->{
+            //When The Enter Key Is Pressed
+            if (e.getCode() == KeyCode.ENTER){
+                int pageNumber = -1;
+                //Try To Get A Number From The Text Entry
+                try{
+                    pageNumber += Integer.parseInt(jumpToPageEntry.getText());
+                }catch(NumberFormatException exception){
+                    //Exit the loop if the number is not a valid integer number
+                    return;
+                }
+                binding.onJumpToPage(fileViewer, pageNumber);
+            }
+        });
 
         //set the method for opening a file from a local path
         openFileItem.setOnAction(e-> {
-            PDFViewer newFileViewer = binding.onOpenButtonPressed(primaryStage,fileReader,fileViewer);
+            //Attempt to read the file selected by the user
+            PDFReader newFileReader = binding.onOpenButtonPressed(primaryStage);
             //As long as there is something new to add
-            if (newFileViewer != null){
-                //clear the current fileViewer
-                pdfBox.getChildren().clear();
-                //add the new file viewer
-                pdfBox.getChildren().addAll(newFileViewer);
-                newFileViewer.setPreserveRatio(true);
-                newFileViewer.setFitHeight(pdfBox.getHeight()-(menuBox.getHeight()+bottomBox.getHeight()));
-                newFileViewer.setFitWidth(windowWidth);
-                rightPageLabel.setText("/" + newFileViewer.fileReader.getPageCount());
+            if (newFileReader != null){
+                //set the pdf viewer to use the new file reader
+                fileViewer.setFileReader(newFileReader);
+                //it is not necessary to clear the box
+                //pdfBox.getChildren().clear();
+                //pdfBox.getChildren().addAll(fileViewer);
+                //adjust the labels to match
+                rightPageLabel.setText("/" + fileViewer.fileReader.getPageCount());
                 jumpToPageEntry.setText("1");
             }
         });
 
         //set the method for opening a file from a URL (Currently unfinished)
         openFileUrlItem.setOnAction(e ->{
-            PDFViewer newFileViewer = binding.onOpenFromURLButtonPressed(fileReader, fileViewer);
+            PDFReader newFileReader = binding.onOpenFromURLButtonPressed(fileReader);
             //As long as there is something new to add
-            if (newFileViewer!= null){
-                //clear the current fileViewer
-                pdfBox.getChildren().clear();
-                //add the new file viewer
-                pdfBox.getChildren().addAll(newFileViewer);
-                newFileViewer.setPreserveRatio(true);
-                newFileViewer.setFitHeight(pdfBox.getHeight()-(menuBox.getHeight()+bottomBox.getHeight()));
-                newFileViewer.setFitWidth(windowWidth);
-                rightPageLabel.setText("/" + newFileViewer.fileReader.getPageCount());
+            if (newFileReader != null){
+                //set the pdf viewer to use the new file reader
+                fileViewer.setFileReader(newFileReader);
+                //it is not necessary to clear the box
+                //pdfBox.getChildren().clear();
+                //pdfBox.getChildren().addAll(fileViewer);
+                rightPageLabel.setText("/" + fileViewer.fileReader.getPageCount());
                 jumpToPageEntry.setText("1");
             }
+        });
+
+        //set the method for closing the currently opened file
+        closeFileItem.setOnAction(e->{
+            //clear the currently opened file and adjust the labels to match
+            binding.onCloseButtonPressed(fileViewer, rightPageLabel, jumpToPageEntry);
+        });
+
+        //set the method for exiting the program
+        exitItem.setOnAction(e->{
+            //exit the program
+            Platform.exit();
         });
 
     }

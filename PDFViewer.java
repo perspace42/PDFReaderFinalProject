@@ -32,11 +32,25 @@ public class PDFViewer extends ImageView{
         //set the fileReader
         fileReader = newFileReader;
     }
+
+    //for changing the file reader
+    public void setFileReader(PDFReader newFileReader){
+       if (newFileReader.getCurrentPage() != null){
+            this.setImage(newFileReader.getCurrentPage());
+            //set the fileReader
+            fileReader = newFileReader;
+        }else{
+            System.out.println("No Image Was Found In The PDF Reader");
+        }
+    }
+
     
     //jump to a given page
     public void jumpToPage(int page){
-        //If the current page is not equal to the page to be jumped to
-        if (fileReader.getCurrentPageNumber() != page){
+        //set a variable to store the current page
+        int currentPageNumber = fileReader.getCurrentPageNumber();
+        //If the current page is not equal to the page to be jumped to (and the page to be jumped to is within the document)
+        if (currentPageNumber != page && currentPageNumber <= fileReader.getPageCount()){
             //Set the image to the new page (getPage returns the same Image if the requested page is out of the document page range)
             Image newImage = fileReader.getPage(page);
             //If the images are different
