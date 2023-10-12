@@ -28,28 +28,98 @@ import javafx.stage.Stage;
 import javafx.scene.control.Alert;
 
 public class Controller{
-    //Controller shouldn't need any member variables because it is just storing functions for the various buttons that the UI will contain later
+    //Controller doesn't need any member variables because it is just storing functions for the various buttons that the UI uses
     public Controller(){
     }
 
     //Function to increase the size of the pdf by a set amount
-    public void onZoomInButtonPressed(PDFViewer fileViewer){
-        //zooming in and zooming out are not yet implemented
+    public void onZoomInButtonPressed(PDFViewer fileViewer, TextField zoomTextEntry){
+        //get the current size
+        double originalHeight = fileViewer.getFitHeight() / (fileViewer.zoomLevel / 100.0);
+        double originalWidth  = fileViewer.getFitWidth() / (fileViewer.zoomLevel / 100.0);
+
+        //adjust the zoom level
+        fileViewer.zoomLevel += 10;
+
+        //get the new size (current size minus 10%)
+        double newHeight = originalHeight * (fileViewer.zoomLevel / 100.0);
+        double newWidth = originalWidth * (fileViewer.zoomLevel / 100.0);
+
+        //output the zoom level to the zoome entry widget
+        zoomTextEntry.setText(Integer.toString(fileViewer.zoomLevel));
+
+        //set the file Viewer New Size
+        fileViewer.setFitHeight(newHeight);
+        fileViewer.setFitWidth(newWidth);
     }
 
     //Function to decrease the size of the pdf by a set amount
-    public void onZoomOutButtonPressed(PDFViewer fileViewer){
-        //zooming in and zooming out are not yet implemented
+    public void onZoomOutButtonPressed(PDFViewer fileViewer, TextField zoomTextEntry){
+        //Ensure that the zoom level is not reduced to 0
+        if (fileViewer.zoomLevel >= 11){
+            //get the current size
+            double originalHeight = fileViewer.getFitHeight() / (fileViewer.zoomLevel / 100.0);
+            double originalWidth  = fileViewer.getFitWidth() / (fileViewer.zoomLevel / 100.0);
+
+            //adjust the zoom level
+            fileViewer.zoomLevel -= 10;
+
+            //get the new size (current size minus 10%)
+            double newHeight = originalHeight * (fileViewer.zoomLevel / 100.0);
+            double newWidth = originalWidth * (fileViewer.zoomLevel / 100.0);
+
+            //output the zoom level to the zoome entry widget
+            zoomTextEntry.setText(Integer.toString(fileViewer.zoomLevel));
+
+            //set the file Viewer New Size
+            fileViewer.setFitHeight(newHeight);
+            fileViewer.setFitWidth(newWidth);
+        //Alert The User That Zoom Cannot Be Decreased Below 1% (if zoom is < 11 decreasing it by 10% will put it below 1%)
+        }else{
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setHeaderText("Zoom Level Exception");
+            alert.setContentText("Zoom cannot be decreased by 10% if that would place it below 1%");
+            alert.showAndWait();
+        }
     }
 
     //Function to increase or decrease the size of a pdf by a user given zoom value
-    public void onSetZoomPressed(double zoomValue){
-        //zooming in by an inputed value has not yet been implemented
+    public void onSetZoomPressed(PDFViewer fileViewer, TextField zoomTextEntry){
+        String inputString = zoomTextEntry.getText();
+        //if the user has input something
+        if (!inputString.isEmpty()) {
+            try {
+                //attempt to get the number from the input
+                int inputNumber = Integer.parseInt(inputString);
+                //as long as the number is greater than 0 calculate the zoom level
+                if (inputNumber > 0) {
+                    //get the original height and width
+                    double originalHeight = fileViewer.getFitHeight() / (fileViewer.zoomLevel / 100.0);
+                    double originalWidth = fileViewer.getFitWidth() / (fileViewer.zoomLevel / 100.0);
+                            
+                    //get the new height and width from that
+                    double newHeight = originalHeight * (inputNumber / 100.0);
+                    double newWidth = originalWidth * (inputNumber / 100.0);
+
+                    //set the file viewer new size
+                    fileViewer.zoomLevel = inputNumber;
+                    fileViewer.setFitHeight(newHeight);
+                    fileViewer.setFitWidth(newWidth);
+                }
+            //If there is an error exit the loop
+            }catch (NumberFormatException ex) {
+                return;
+            }
+        }
+        /* 
+        This is placed here in case the user inputs 0 or "" to reset the zoom text entry to its original value
+        It will also set the new zoom value provided the user has entered a valid number 
+        */
+        zoomTextEntry.setText(Integer.toString(fileViewer.zoomLevel));
     }
 
     //Function to load the next page
     public void onNextPageButtonPressed(PDFViewer fileViewer){
-
         fileViewer.incrementPage();
     }
 
@@ -132,6 +202,7 @@ public class Controller{
             //Attempt to assign the URL with the provided url string
             try{
                 url = new URL(urlString);
+            //If The URL did not lead to a valid pdf or was invalid
             }catch(Exception e){
                 //Display An Error Message That The URL Was Not Valid
                 Alert alert = new Alert(AlertType.ERROR);
@@ -183,7 +254,7 @@ public class Controller{
                 }
             }
 
-        //If no file has been loaded to the user that they need to load a file before saving one
+        //If no file has been loaded to the user Alert them that they need to load a file before saving one
         }else{
             alert = new Alert(AlertType.INFORMATION);
             alert.setHeaderText("No File Loaded");

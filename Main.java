@@ -16,8 +16,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
@@ -221,89 +219,20 @@ public class Main extends Application {
 
         //set the method for zooming in the currently opened file
         zoomInButton.setOnAction(e->{
-            //get the current size
-            double originalHeight = fileViewer.getFitHeight() / (fileViewer.zoomLevel / 100.0);
-            double originalWidth  = fileViewer.getFitWidth() / (fileViewer.zoomLevel / 100.0);
-
-            //adjust the zoom level
-            fileViewer.zoomLevel += 10;
-
-            //get the new size (current size minus 10%)
-            double newHeight = originalHeight * (fileViewer.zoomLevel / 100.0);
-            double newWidth = originalWidth * (fileViewer.zoomLevel / 100.0);
-
-            //output the zoom level to the zoome entry widget
-            zoomTextEntry.setText(Integer.toString(fileViewer.zoomLevel));
-
-            //set the file Viewer New Size
-            fileViewer.setFitHeight(newHeight);
-            fileViewer.setFitWidth(newWidth);
+            binding.onZoomInButtonPressed(fileViewer, zoomTextEntry);
         });
 
         //set the method for zooming out in the currently opened file
         zoomOutButton.setOnAction(e->{
-            //Ensure that the zoom level is not reduced to 0
-            if (fileViewer.zoomLevel >= 11){
-                //get the current size
-                double originalHeight = fileViewer.getFitHeight() / (fileViewer.zoomLevel / 100.0);
-                double originalWidth  = fileViewer.getFitWidth() / (fileViewer.zoomLevel / 100.0);
-
-                //adjust the zoom level
-                fileViewer.zoomLevel -= 10;
-
-                //get the new size (current size minus 10%)
-                double newHeight = originalHeight * (fileViewer.zoomLevel / 100.0);
-                double newWidth = originalWidth * (fileViewer.zoomLevel / 100.0);
-
-                //output the zoom level to the zoome entry widget
-                zoomTextEntry.setText(Integer.toString(fileViewer.zoomLevel));
-
-                //set the file Viewer New Size
-                fileViewer.setFitHeight(newHeight);
-                fileViewer.setFitWidth(newWidth);
-            //Alert The User That Zoom Cannot Be Decreased Below 1% (if zoom is < 11 decreasing it by 10% will put it below 1%)
-            }else{
-                Alert alert = new Alert(AlertType.INFORMATION);
-                alert.setHeaderText("Zoom Level Exception");
-                alert.setContentText("Zoom cannot be decreased by 10% if that would place it below 1%");
-                alert.showAndWait();
-            }
+            binding.onZoomOutButtonPressed(fileViewer, zoomTextEntry);
         });
 
+        //set the method for setting zoom based on a given value
         zoomTextEntry.setOnKeyPressed(e->{
             //When The Enter Key Is Pressed
             if (e.getCode() == KeyCode.ENTER){
-                String inputString = zoomTextEntry.getText();
-                //if the user has input something
-                if (!inputString.isEmpty()) {
-                    try {
-                        //attempt to get the number from the input
-                        int inputNumber = Integer.parseInt(inputString);
-                        //as long as the number is greater than 0 calculate the zoom level
-                        if (inputNumber > 0) {
-                            //get the original height and width
-                            double originalHeight = fileViewer.getFitHeight() / (fileViewer.zoomLevel / 100.0);
-                            double originalWidth = fileViewer.getFitWidth() / (fileViewer.zoomLevel / 100.0);
-                            
-                            //get the new height and width from that
-                            double newHeight = originalHeight * (inputNumber / 100.0);
-                            double newWidth = originalWidth * (inputNumber / 100.0);
-
-                            //set the file viewer new size
-                            fileViewer.zoomLevel = inputNumber;
-                            fileViewer.setFitHeight(newHeight);
-                            fileViewer.setFitWidth(newWidth);
-                        }
-                    //If there is an error exit the loop
-                    }catch (NumberFormatException ex) {
-                        return;
-                    }
-                }
-                /* 
-                This is placed here in case the user inputs 0 or "" to reset the zoom text entry to its original value
-                It will also set the new zoom value provided the user has entered a valid number 
-                */
-                zoomTextEntry.setText(Integer.toString(fileViewer.zoomLevel));
+                //Zoom In By The Given Value
+                binding.onSetZoomPressed(fileViewer, zoomTextEntry);
             }
         });
 
@@ -317,6 +246,7 @@ public class Main extends Application {
 
     }
 
+    //Main Program Loop
     public static void main(String[] args) {       
         //Run tests on startup
         testInvalidInput();
