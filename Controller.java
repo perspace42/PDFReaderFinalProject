@@ -49,6 +49,7 @@ public class Controller{
 
     //Function to load the next page
     public void onNextPageButtonPressed(PDFViewer fileViewer){
+
         fileViewer.incrementPage();
     }
 

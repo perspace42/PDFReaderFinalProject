@@ -25,7 +25,7 @@ import javafx.scene.image.Image;
 public class PDFReader extends PDFDocument {
     
     private Image currentPageImage;
-    private int currentPageNumber = 0;
+    private int currentPageNumber = -1;
     private int pageCount = 0;
     private File savedFile;
 
