@@ -1,7 +1,7 @@
 /*
 Author: Scott Field
 Name: Controller
-Date: 09/21/2023
+Date: 10/12/2023
 Version: 1.0
 Purpose:
 A class for storing all of the methods to be used when
@@ -77,7 +77,7 @@ public class Controller{
         //Alert The User That Zoom Cannot Be Decreased Below 1% (if zoom is < 11 decreasing it by 10% will put it below 1%)
         }else{
             Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setHeaderText("Zoom Level Exception");
+            alert.setHeaderText("Zoom Level Warning");
             alert.setContentText("Zoom cannot be decreased by 10% if that would place it below 1%");
             alert.showAndWait();
         }
@@ -168,6 +168,7 @@ public class Controller{
         //Define The Custom Dialog Box
         Dialog<String> dialog = new Dialog<>();
         dialog.setTitle("Open PDF from URL");
+        dialog.getDialogPane().setPrefWidth(600);
 
         // Set the button types
         ButtonType openButtonType = new ButtonType("Open", ButtonData.OK_DONE);
@@ -179,6 +180,7 @@ public class Controller{
         content.setPadding(new Insets(10, 10, 10, 10));
         Label urlLabel = new Label("PDF URL:");
         TextField urlTextField = new TextField();
+        urlTextField.setPrefWidth(450);
         content.getChildren().addAll(urlLabel, urlTextField);
 
         //add the content to the dialog box

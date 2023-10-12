@@ -8,11 +8,13 @@ A class to storing the methods for loading a PDF from a File
 or from a web URL
 */
 import java.net.*;
+
+import org.apache.commons.io.output.ByteArrayOutputStream;
+
 import java.io.File;
-import java.io.BufferedReader;
-import java.io.FileWriter;
+import java.io.InputStream;
 import java.io.FileInputStream;
-import java.io.InputStreamReader;
+import java.io.FileOutputStream;
 
 public abstract class PDFDocument {
     // Declare pdfFile as an instance variable
@@ -56,26 +58,30 @@ public abstract class PDFDocument {
             URLConnection connection = myUrl.openConnection();
             connection.connect();
     
-            // Check if the content type is PDF
-            String contentType = connection.getContentType();
-            if (contentType != null && contentType.equals("application/pdf")) {
-                // Attempt to Read the PDF content from the URL
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                String line;
-                StringBuilder stringBuilder = new StringBuilder();
-
-                while ((line = bufferedReader.readLine()) != null) {
-                    stringBuilder.append(line);
+            //Check if the content type is PDF
+            String fileName = myUrl.getFile();
+            if (fileName != null && fileName.endsWith(".pdf")) {
+                //Attempt to read the PDF content from the URL
+                InputStream inputStream = connection.getInputStream();
+                //Set the outputStream to write the data to the file
+                ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+                byte[] buffer = new byte[4096];
+                //Loop Through The InputStream Until Their Is No More Data To Read
+                int bytesRead;
+                while ((bytesRead = inputStream.read(buffer)) != -1) {
+                    outputStream.write(buffer, 0, bytesRead);
                 }
+                //Convert the OutputStream To a ByteArray
+                byte[] pdfContent = outputStream.toByteArray();
 
-                String pdfContent = stringBuilder.toString();
-    
                 // Create a temporary file to store the PDF content
                 File tempFile = File.createTempFile("temp", ".pdf");
-                // Add the contents to the temporary file
-                FileWriter fileWriter = new FileWriter(tempFile);
-                fileWriter.write(pdfContent);
-                fileWriter.close();
+                //Add the fileOutputStream to the temporary file
+                FileOutputStream fileOutputStream = new FileOutputStream(tempFile);
+                //Then write the ByteArray to the pdf
+                fileOutputStream.write(pdfContent);
+                //close the output stream after finished with it
+                fileOutputStream.close();
 
                 if (isPDF(tempFile)) {
                     //If so save the temporary file to the class variables

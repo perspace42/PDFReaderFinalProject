@@ -97,7 +97,7 @@ public class PDFReader extends PDFDocument {
                 //set the page image list length
                 pageImageList = new Image[pageCount];
                 //for each page in the document
-                for (int i = 0; i <= pageCount; i++) {
+                for (int i = 0; i < pageCount; i++) {
                     //render the pdfPage at index i to an BufferedImage with a DPI of 600
                     BufferedImage bufferedImage = pdfRenderer.renderImageWithDPI(i, 600);
                     //convert the bufferedimage to a JavaFX image that can be displayed
