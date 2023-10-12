@@ -27,6 +27,7 @@ public class PDFReader extends PDFDocument {
     private Image currentPageImage;
     private int currentPageNumber = 0;
     private int pageCount = 0;
+    private File savedFile;
 
     //Store current page height
     private double currentPageHeight = 0;
@@ -45,6 +46,8 @@ public class PDFReader extends PDFDocument {
         super(file); 
         //If the pdf file is valid
         if (isValid){
+            //assign the file to the savedFile 
+            savedFile = file;
             //Attempt to assign the member variables using the PDDocument
             try {
                 //get the pdf
@@ -81,6 +84,8 @@ public class PDFReader extends PDFDocument {
         super(url);
         //if the pdf file is valid
         if (isValid){
+            //assign the file to the savedFile 
+            savedFile = pdfFile;
             //Attempt to assign the member variables using the PDDocument
             try {
                 //get the pdf
@@ -166,6 +171,11 @@ public class PDFReader extends PDFDocument {
         Image[] pageImageList = new Image[1];
         currentPageNumber = -1;
         pageCount = 0;
+        savedFile = null;
+    }
+
+    public File getPDFFile(){
+        return savedFile;
     }
 
     

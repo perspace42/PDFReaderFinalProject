@@ -60,7 +60,7 @@ public class Main extends Application {
 
         TextField jumpToPageEntry = new TextField();
 
-        //Create The Formatter To Ensure That Only Numbers Can Be Entered Into The JumpToPage Field
+        //Create The Formatter To Ensure That Only Numbers Can Be Entered Into The JumpToPage and ZoomLevel Field
         TextFormatter<String> formatter = new TextFormatter<>(change -> {
             String text = change.getText();
             if (text.matches("[0-9]*")) {
@@ -80,8 +80,10 @@ public class Main extends Application {
         pdfBox.setAlignment(Pos.CENTER);
 
         //Create the HBox to store the zoom set TextField Label and Buttons
-        Label zoomLabel = new Label("Zoom");
+        Label zoomLabel = new Label("Zoom %");
         TextField zoomTextEntry = new TextField();
+        zoomTextEntry.setTextFormatter(formatter);
+
         Button zoomInButton = new Button("Zoom In");
         Button zoomOutButton = new Button("Zoom Out");
         HBox zoomDisplay = new HBox(zoomLabel,zoomTextEntry,zoomInButton,zoomOutButton);
@@ -204,6 +206,55 @@ public class Main extends Application {
             //clear the currently opened file and adjust the labels to match
             binding.onCloseButtonPressed(fileViewer, rightPageLabel, jumpToPageEntry);
         });
+
+        //set the method for saving the currently opened file to a new location
+        saveAsFileItem.setOnAction(e->{
+            binding.onSaveAsButtonPressed(fileViewer.fileReader.getPDFFile());
+        });
+
+        //set the method for zooming in the currently opened file
+        zoomInButton.setOnAction(e->{
+            //get the current size
+            double currentHeight = fileViewer.getFitHeight();
+            double currentWidth = fileViewer.getFitWidth();
+
+            //get the new size (current size plus 10%)
+            double newHeight = currentHeight * 1.1;
+            double newWidth = currentWidth * 1.1;
+
+            //adjust the zoom level
+            fileViewer.zoomLevel += 10;
+
+            //output the zoom level to the zoome entry widget
+            zoomTextEntry.setText(Integer.toString(fileViewer.zoomLevel));
+
+            //set the file Viewer New Size
+            fileViewer.setFitHeight(newHeight);
+            fileViewer.setFitWidth(newWidth);
+        });
+
+        //set the method for zooming out in the currently opened file
+        zoomOutButton.setOnAction(e->{
+            //get the current size
+            double currentHeight = fileViewer.getFitHeight();
+            double currentWidth = fileViewer.getFitWidth();
+
+            //get the new size (current size minus 10%)
+            double newHeight = currentHeight * 0.9;
+            double newWidth = currentWidth * 0.9;
+
+            //adjust the zoom level
+            fileViewer.zoomLevel -= 10;
+
+            //output the zoom level to the zoome entry widget
+            zoomTextEntry.setText(Integer.toString(fileViewer.zoomLevel));
+
+            //set the file Viewer New Size
+            fileViewer.setFitHeight(newHeight);
+            fileViewer.setFitWidth(newWidth);
+        });
+
+        //set the method for zooming to a certain level
 
         //set the method for exiting the program
         exitItem.setOnAction(e->{

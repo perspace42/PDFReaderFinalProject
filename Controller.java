@@ -9,7 +9,10 @@ the buttons in the program are pressed
 */
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.Optional;
 
 import javafx.geometry.Insets;
@@ -145,9 +148,47 @@ public class Controller{
         return null;
     }
 
-    //Function to save a currently opened pdf file to a local directory (and also rename it)
-    public void onSaveAsButtonPressed(){
-        //save currently opened pdf file is not yet implemented
+    //Function to save a currently opened pdf file to a local directory (and also rename it if the user changes the name)
+    public void onSaveAsButtonPressed(File pdfFile){
+        Alert alert;
+
+        if (pdfFile != null){
+            //Set the file save dialog
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Save PDF File");
+            fileChooser.setInitialFileName(pdfFile.getName());
+            //Set the dialog to show that the file will be saved as a pdf file
+            fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("PDF Files", "*.pdf"));            
+            //Open the file save dialog
+            File selectedFile = fileChooser.showSaveDialog(null);
+            
+            //If the user selects a file location
+            if (selectedFile != null) {
+                //If the selected file name doesn't end with .pdf
+                if (!selectedFile.getName().endsWith(".pdf")) {
+                    //add .pdf to the end of the file
+                    selectedFile = new File(selectedFile.getAbsolutePath() + ".pdf");
+                }
+                // Copy the pdfFile data to the selectedFile data
+                try {
+                    Files.copy(pdfFile.toPath(), selectedFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                // If Their is a problem copying the data log the error and alert the user
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    alert = new Alert(AlertType.ERROR);
+                    alert.setHeaderText("File Data Save Error");
+                    alert.setContentText("A was a problem saving the file data to the new file location, please try again later.");
+                    alert.showAndWait();
+                }
+            }
+
+        //If no file has been loaded to the user that they need to load a file before saving one
+        }else{
+            alert = new Alert(AlertType.INFORMATION);
+            alert.setHeaderText("No File Loaded");
+            alert.setContentText("Please open a PDF File before attempting to Save it to a new location ");
+            alert.showAndWait();
+        }
     }
 
     //Function to close the currently opened pdf file

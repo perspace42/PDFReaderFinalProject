@@ -14,7 +14,7 @@ import javafx.scene.image.ImageView;
 
 public class PDFViewer extends ImageView{
     public PDFReader fileReader;
-    double zoomFactor = 0.0;
+    int zoomLevel = 100;
 
     //empty constructor
     public PDFViewer(){
