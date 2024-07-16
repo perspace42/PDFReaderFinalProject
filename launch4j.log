@@ -1,0 +1,66 @@
+
+
+Version:	3.50
+CmdLine:	C:\Users\Scott\Desktop\Desktop Documents\College (Ivy Tech)\Past Classes\Software Development Java\Java Programs\PDFReaderFinalProject\PDFReader.exe --l4j-debug
+JNI:		No
+WOW64:		Yes
+Working dir:	C:\Users\Scott\Desktop\Desktop Documents\College (Ivy Tech)\Past Classes\Software Development Java\Java Programs\PDFReaderFinalProject\.
+Requires JDK:	No
+Requires 64-Bit: No
+Java min ver:	
+Java max ver:	
+Substitute:	JAVA_HOME = 
+Substitute:	PATH = C:\Users\Scott\AppData\Local\Programs\Python\Python312\Scripts\;C:\Users\Scott\AppData\Local\Programs\Python\Python312\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\msys64\ucrt64\bin;C:\Program Files\Java\jdk-17\bin;C:\Program Files\dotnet\;C:\Program Files\GitHub CLI\;C:\Program Files\Git\cmd;C:\Program Files\CMake\bin;C:\ProgramData\chocolatey\bin;C:\Python311\Scripts;C:\Program Files\nodejs\;C:\Users\Scott\AppData\Local\Microsoft\WindowsApps;F:\Users\field\AppData\Local\GitHubDesktop\bin;C:\Users\Scott\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Scott\.dotnet\tools;C:\Users\Scott\AppData\Roaming\npm;C:\Program Files\Java\jdk-17\bin
+JRE paths:	;C:\Users\Scott\AppData\Local\Programs\Python\Python312\Scripts\;C:\Users\Scott\AppData\Local\Programs\Python\Python312\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\msys64\ucrt64\bin;C:\Program Files\Java\jdk-17\bin;C:\Program Files\dotnet\;C:\Program Files\GitHub CLI\;C:\Program Files\Git\cmd;C:\Program Files\CMake\bin;C:\ProgramData\chocolatey\bin;C:\Python311\Scripts;C:\Program Files\nodejs\;C:\Users\Scott\AppData\Local\Microsoft\WindowsApps;F:\Users\field\AppData\Local\GitHubDesktop\bin;C:\Users\Scott\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Scott\.dotnet\tools;C:\Users\Scott\AppData\Roaming\npm;C:\Program Files\Java\jdk-17\bin
+Check launcher:	C:\Users\Scott\AppData\Local\Programs\Python\Python312\Scripts\bin\javaw.exe (not found)
+Check launcher:	C:\Users\Scott\AppData\Local\Programs\Python\Python312\bin\javaw.exe (not found)
+Check launcher:	C:\Windows\system32\bin\javaw.exe (not found)
+Check launcher:	C:\Windows\bin\javaw.exe (not found)
+Check launcher:	C:\Windows\System32\Wbem\bin\javaw.exe (not found)
+Check launcher:	C:\Windows\System32\WindowsPowerShell\v1.0\bin\javaw.exe (not found)
+Check launcher:	C:\Windows\System32\OpenSSH\bin\javaw.exe (not found)
+Check launcher:	C:\msys64\ucrt64\bin\javaw.exe (not found)
+Check launcher:	C:\Program Files\Java\jdk-17\bin\javaw.exe (OK)
+Version string: 1.017.000_008 / 64-Bit (OK)
+Launcher:	C:\Program Files\Java\jdk-17\bin\javaw.exe
+Launcher args:	-jar "C:\Users\Scott\Desktop\Desktop Documents\College (Ivy Tech)\Past Classes\Software Development Java\Java Programs\PDFReaderFinalProject\PDFReader.exe"
+Args length:	155/32768 chars
+Exit code:	0
+
+
+Version:	3.50
+CmdLine:	C:\Users\Scott\Desktop\Desktop Documents\College (Ivy Tech)\Past Classes\Software Development Java\Java Programs\PDFReaderFinalProject\PDFReader.exe --l4j-debug
+JNI:		No
+WOW64:		Yes
+Working dir:	C:\Users\Scott\Desktop\Desktop Documents\College (Ivy Tech)\Past Classes\Software Development Java\Java Programs\PDFReaderFinalProject\.
+Requires JDK:	No
+Requires 64-Bit: No
+Java min ver:	
+Java max ver:	
+Substitute:	JAVA_HOME = 
+Substitute:	PATH = C:\Users\Scott\AppData\Local\Programs\Python\Python312\Scripts\;C:\Users\Scott\AppData\Local\Programs\Python\Python312\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\msys64\ucrt64\bin;C:\Program Files\Java\jdk-17\bin;C:\Program Files\dotnet\;C:\Program Files\GitHub CLI\;C:\Program Files\Git\cmd;C:\Program Files\CMake\bin;C:\ProgramData\chocolatey\bin;C:\Python311\Scripts;C:\Program Files\nodejs\;C:\Users\Scott\AppData\Local\Microsoft\WindowsApps;F:\Users\field\AppData\Local\GitHubDesktop\bin;C:\Users\Scott\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Scott\.dotnet\tools;C:\Users\Scott\AppData\Roaming\npm;C:\Program Files\Java\jdk-17\bin
+JRE paths:	;C:\Users\Scott\AppData\Local\Programs\Python\Python312\Scripts\;C:\Users\Scott\AppData\Local\Programs\Python\Python312\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\msys64\ucrt64\bin;C:\Program Files\Java\jdk-17\bin;C:\Program Files\dotnet\;C:\Program Files\GitHub CLI\;C:\Program Files\Git\cmd;C:\Program Files\CMake\bin;C:\ProgramData\chocolatey\bin;C:\Python311\Scripts;C:\Program Files\nodejs\;C:\Users\Scott\AppData\Local\Microsoft\WindowsApps;F:\Users\field\AppData\Local\GitHubDesktop\bin;C:\Users\Scott\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Scott\.dotnet\tools;C:\Users\Scott\AppData\Roaming\npm;C:\Program Files\Java\jdk-17\bin
+Check launcher:	C:\Users\Scott\AppData\Local\Programs\Python\Python312\Scripts\bin\javaw.exe (not found)
+Check launcher:	C:\Users\Scott\AppData\Local\Programs\Python\Python312\bin\javaw.exe (not found)
+Check launcher:	C:\Windows\system32\bin\javaw.exe (not found)
+Check launcher:	C:\Windows\bin\javaw.exe (not found)
+Check launcher:	C:\Windows\System32\Wbem\bin\javaw.exe (not found)
+Check launcher:	C:\Windows\System32\WindowsPowerShell\v1.0\bin\javaw.exe (not found)
+Check launcher:	C:\Windows\System32\OpenSSH\bin\javaw.exe (not found)
+Check launcher:	C:\msys64\ucrt64\bin\javaw.exe (not found)
+Check launcher:	C:\Program Files\Java\jdk-17\bin\javaw.exe (OK)
+Version string: 1.017.000_008 / 64-Bit (OK)
+Main class:	Main
+Add classpath:	c:\Users\Scott\Documents\JavaFX\openjfx-17.0.8_windows-x64_bin-sdk\javafx-sdk-17.0.8\lib\javafx.base.jar
+Add classpath:	c:\\Users\\Scott\\Documents\\JavaFX\\openjfx-17.0.8_windows-x64_bin-sdk\\javafx-sdk-17.0.8\\lib\\javafx.controls.jar
+Add classpath:	c:\\Users\\Scott\\Documents\\JavaFX\\openjfx-17.0.8_windows-x64_bin-sdk\\javafx-sdk-17.0.8\\lib\\javafx.fxml.jar
+Add classpath:	c:\\Users\\Scott\\Documents\\JavaFX\\openjfx-17.0.8_windows-x64_bin-sdk\\javafx-sdk-17.0.8\\lib\\javafx.graphics.jar
+Add classpath:	c:\\Users\\Scott\\Documents\\JavaFX\\openjfx-17.0.8_windows-x64_bin-sdk\\javafx-sdk-17.0.8\\lib\\javafx.media.jar
+Add classpath:	c:\\Users\\Scott\\Documents\\JavaFX\\openjfx-17.0.8_windows-x64_bin-sdk\\javafx-sdk-17.0.8\\lib\\javafx.swing.jar
+Add classpath:	c:\\Users\\Scott\\Documents\\JavaFX\\openjfx-17.0.8_windows-x64_bin-sdk\\javafx-sdk-17.0.8\\lib\\javafx.web.jar
+Add classpath:	c:\\Users\\Scott\\Documents\\JavaFX\\openjfx-17.0.8_windows-x64_bin-sdk\\javafx-sdk-17.0.8\\lib\\javafx-swt.jar
+Add classpath:	c:\\Users\\Scott\\Documents\\JavaFX\\openjfx-17.0.8_windows-x64_bin-sdk\\javafx-sdk-17.0.8\\lib\\pdfbox-app-3.0.0.jar
+Launcher:	C:\Program Files\Java\jdk-17\bin\javaw.exe
+Launcher args:	--module-path "c:\Users\Scott\Documents\JavaFX\openjfx-17.0.8_windows-x64_bin-sdk\javafx-sdk-17.0.8\lib" --add-modules javafx.controls,javafx.base,javafx.fxml,javafx.graphics,javafx.media,javafx.web -classpath "c:\Users\Scott\Documents\JavaFX\openjfx-17.0.8_windows-x64_bin-sdk\javafx-sdk-17.0.8\lib\pdfbox-app-3.0.0" --enable-preview -classpath "C:\Users\Scott\Desktop\Desktop Documents\College (Ivy Tech)\Past Classes\Software Development Java\Java Programs\PDFReaderFinalProject\PDFReader.exe;c:\Users\Scott\Documents\JavaFX\openjfx-17.0.8_windows-x64_bin-sdk\javafx-sdk-17.0.8\lib\javafx.base.jar;c:\\Users\\Scott\\Documents\\JavaFX\\openjfx-17.0.8_windows-x64_bin-sdk\\javafx-sdk-17.0.8\\lib\\javafx.controls.jar;c:\\Users\\Scott\\Documents\\JavaFX\\openjfx-17.0.8_windows-x64_bin-sdk\\javafx-sdk-17.0.8\\lib\\javafx.fxml.jar;c:\\Users\\Scott\\Documents\\JavaFX\\openjfx-17.0.8_windows-x64_bin-sdk\\javafx-sdk-17.0.8\\lib\\javafx.graphics.jar;c:\\Users\\Scott\\Documents\\JavaFX\\openjfx-17.0.8_windows-x64_bin-sdk\\javafx-sdk-17.0.8\\lib\\javafx.media.jar;c:\\Users\\Scott\\Documents\\JavaFX\\openjfx-17.0.8_windows-x64_bin-sdk\\javafx-sdk-17.0.8\\lib\\javafx.swing.jar;c:\\Users\\Scott\\Documents\\JavaFX\\openjfx-17.0.8_windows-x64_bin-sdk\\javafx-sdk-17.0.8\\lib\\javafx.web.jar;c:\\Users\\Scott\\Documents\\JavaFX\\openjfx-17.0.8_windows-x64_bin-sdk\\javafx-sdk-17.0.8\\lib\\javafx-swt.jar;c:\\Users\\Scott\\Documents\\JavaFX\\openjfx-17.0.8_windows-x64_bin-sdk\\javafx-sdk-17.0.8\\lib\\pdfbox-app-3.0.0.jar" Main
+Args length:	1523/32768 chars
+Exit code:	0

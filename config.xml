@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch4jConfig>
+  <dontWrapJar>false</dontWrapJar>
+  <headerType>gui</headerType>
+  <jar>C:\Users\Scott\Desktop\Desktop Documents\College (Ivy Tech)\Past Classes\Software Development Java\Java Programs\PDFReaderFinalProject\PDFReaderFinalProject.jar</jar>
+  <outfile>C:\Users\Scott\Desktop\Desktop Documents\College (Ivy Tech)\Past Classes\Software Development Java\Java Programs\PDFReaderFinalProject\PDFReader.exe</outfile>
+  <errTitle>ERROR: This application requires a compatible version of Java to be run.</errTitle>
+  <cmdLine></cmdLine>
+  <chdir>.</chdir>
+  <priority>normal</priority>
+  <downloadUrl>https://www.java.com/en/download/</downloadUrl>
+  <supportUrl></supportUrl>
+  <stayAlive>false</stayAlive>
+  <restartOnCrash>false</restartOnCrash>
+  <manifest></manifest>
+  <icon></icon>
+  <classPath>
+    <mainClass>Main</mainClass>
+    <cp>c:\Users\Scott\Documents\JavaFX\openjfx-17.0.8_windows-x64_bin-sdk\javafx-sdk-17.0.8\lib\javafx.base.jar</cp>
+    <cp>c:\\Users\\Scott\\Documents\\JavaFX\\openjfx-17.0.8_windows-x64_bin-sdk\\javafx-sdk-17.0.8\\lib\\javafx.controls.jar</cp>
+    <cp>c:\\Users\\Scott\\Documents\\JavaFX\\openjfx-17.0.8_windows-x64_bin-sdk\\javafx-sdk-17.0.8\\lib\\javafx.fxml.jar</cp>
+    <cp>c:\\Users\\Scott\\Documents\\JavaFX\\openjfx-17.0.8_windows-x64_bin-sdk\\javafx-sdk-17.0.8\\lib\\javafx.graphics.jar</cp>
+    <cp>c:\\Users\\Scott\\Documents\\JavaFX\\openjfx-17.0.8_windows-x64_bin-sdk\\javafx-sdk-17.0.8\\lib\\javafx.media.jar</cp>
+    <cp>c:\\Users\\Scott\\Documents\\JavaFX\\openjfx-17.0.8_windows-x64_bin-sdk\\javafx-sdk-17.0.8\\lib\\javafx.swing.jar</cp>
+    <cp>c:\\Users\\Scott\\Documents\\JavaFX\\openjfx-17.0.8_windows-x64_bin-sdk\\javafx-sdk-17.0.8\\lib\\javafx.web.jar</cp>
+    <cp>c:\\Users\\Scott\\Documents\\JavaFX\\openjfx-17.0.8_windows-x64_bin-sdk\\javafx-sdk-17.0.8\\lib\\javafx-swt.jar</cp>
+    <cp>c:\\Users\\Scott\\Documents\\JavaFX\\openjfx-17.0.8_windows-x64_bin-sdk\\javafx-sdk-17.0.8\\lib\\pdfbox-app-3.0.0.jar</cp>
+  </classPath>
+  <jre>
+    <path>%JAVA_HOME%;%PATH%</path>
+    <requiresJdk>false</requiresJdk>
+    <requires64Bit>false</requires64Bit>
+    <minVersion></minVersion>
+    <maxVersion></maxVersion>
+    <opt>--module-path &quot;c:\Users\Scott\Documents\JavaFX\openjfx-17.0.8_windows-x64_bin-sdk\javafx-sdk-17.0.8\lib&quot; --add-modules javafx.controls,javafx.base,javafx.fxml,javafx.graphics,javafx.media,javafx.web -classpath &quot;c:\Users\Scott\Documents\JavaFX\openjfx-17.0.8_windows-x64_bin-sdk\javafx-sdk-17.0.8\lib\pdfbox-app-3.0.0&quot; --enable-preview</opt>
+  </jre>
+</launch4jConfig>
