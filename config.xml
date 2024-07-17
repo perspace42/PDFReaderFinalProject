@@ -2,8 +2,8 @@
 <launch4jConfig>
   <dontWrapJar>false</dontWrapJar>
   <headerType>gui</headerType>
-  <jar>C:\Users\Scott\Desktop\Desktop Documents\College (Ivy Tech)\Past Classes\Software Development Java\Java Programs\PDFReaderFinalProject\PDFReaderFinalProject.jar</jar>
-  <outfile>C:\Users\Scott\Desktop\Desktop Documents\College (Ivy Tech)\Past Classes\Software Development Java\Java Programs\PDFReaderFinalProject\PDFReader.exe</outfile>
+  <jar>C:\Users\Scott\Desktop\Desktop Documents\College (Ivy Tech)\Past Classes\Software Development Java\Java Programs\PDFReaderFinalProject\dist\PDFReaderFinalProject.jar</jar>
+  <outfile>C:\Users\Scott\Desktop\Desktop Documents\College (Ivy Tech)\Past Classes\Software Development Java\Java Programs\PDFReaderFinalProject\dist\PDFReader.exe</outfile>
   <errTitle>ERROR: This application requires a compatible version of Java to be run.</errTitle>
   <cmdLine></cmdLine>
   <chdir>.</chdir>
